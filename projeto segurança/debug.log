@@ -1,0 +1,170 @@
+signup_error: CPF deve ter 10 dígitos.
+signup_success: N/A
+signup_error: CPF deve ter 10 dígitos.
+signup_success: N/A
+signup_error: CPF deve ter 10 dígitos.
+signup_success: N/A
+signup_error: The password field must be at least 8 characters. (and 2 more errors)
+signup_success: N/A
+signup_error: The cpf field must be at least 11 characters. (and 1 more error)
+signup_success: N/A
+signup_error: CPF deve ter 10 dígitos.
+signup_success: N/A
+signup_error: N/A
+signup_success: N/A
+signup_error: The numero has already been taken.
+signup_success: N/A
+signup_error: N/A
+signup_success: Cadastro realizado com sucesso!
+signup_error: The password field must be at least 8 characters. (and 2 more errors)
+signup_success: N/A
+signup_error: The password field must be at least 8 characters. (and 3 more errors)
+signup_success: N/A
+signup_error: The password field must be at least 8 characters. (and 3 more errors)
+signup_success: N/A
+signup_error: N/A
+signup_success: N/A
+signup_error: The name field is required. (and 4 more errors)
+signup_success: N/A
+signup_error: N/A
+signup_success: N/A
+signup_error: The name field is required. (and 4 more errors)
+signup_success: N/A
+signup_error: The name field is required. (and 4 more errors)
+signup_success: N/A
+signup_error: N/A
+signup_success: N/A
+signup_error: The name field is required. (and 4 more errors)
+signup_success: N/A
+signup_error: The name field is required. (and 4 more errors)
+signup_success: N/A
+signup_error: The name field is required. (and 4 more errors)
+signup_success: N/A
+signup_error: The name field is required. (and 4 more errors)
+signup_success: N/A
+signup_error: The password field must be at least 8 characters. (and 3 more errors)
+signup_success: N/A
+signup_error: N/A
+signup_success: N/A
+signup_error: The password field confirmation does not match.
+signup_success: N/A
+signup_error: The numero has already been taken.
+signup_success: N/A
+signup_error: The email field is required. (and 3 more errors)
+signup_success: N/A
+signup_error: N/A
+signup_success: Cadastro realizado com sucesso!
+signup_error: N/A
+signup_success: N/A
+signup_error: N/A
+signup_success: N/A
+signup_error: N/A
+signup_success: N/A
+signup_error: N/A
+signup_success: N/A
+signin_error: The email field is required. (and 1 more error)
+signin_success: Login realizado com sucesso!
+signup_error: N/A
+signup_success: N/A
+signin_error: As credenciais estão incorretas.
+signin_success: Login realizado com sucesso!
+signup_error: N/A
+signup_success: N/A
+signin_error: The password field is required.
+signin_success: Login realizado com sucesso!
+signup_error: N/A
+signup_success: N/A
+signin_error: The password field is required.
+signin_success: Login realizado com sucesso!
+signup_error: N/A
+signup_success: N/A
+signin_error: As credenciais estão incorretas.
+signin_success: Login realizado com sucesso!
+API URL: http://localhost/api/logout
+Method: POST
+Response: {"message":"Deslogado com sucesso"}
+Status: 200
+signup_error: N/A
+signup_success: N/A
+signin_error: N/A
+signin_success: N/A
+API URL: http://localhost/api/logout
+Method: POST
+Response: {"message":"Unauthenticated."}
+Status: 401
+signup_error: N/A
+signup_success: N/A
+signin_error: N/A
+signin_success: N/A
+signup_error: N/A
+signup_success: N/A
+signin_error: As credenciais estão incorretas.
+signin_success: N/A
+API URL: http://localhost/api/logout
+Method: POST
+Response: {"message":"Unauthenticated."}
+Status: 401
+signup_error: N/A
+signup_success: N/A
+signin_error: N/A
+signin_success: N/A
+API URL: http://localhost/api/logout
+Method: POST
+Response: {"message":"Unauthenticated."}
+Status: 401
+signup_error: N/A
+signup_success: N/A
+signin_error: N/A
+signin_success: N/A
+API URL: http://localhost/api/logout
+Method: POST
+Response: {"message":"Unauthenticated."}
+Status: 401
+signup_error: N/A
+signup_success: N/A
+signin_error: N/A
+signin_success: N/A
+signup_error: N/A
+signup_success: N/A
+signin_error: N/A
+signin_success: Login realizado com sucesso!
+API URL: http://localhost/api/logout
+Method: POST
+Response: {"message":"Deslogado com sucesso"}
+Status: 200
+signup_error: N/A
+signup_success: N/A
+signin_error: N/A
+signin_success: N/A
+API URL: http://localhost/api/logout
+Method: POST
+Response: {"message":"Deslogado com sucesso"}
+Status: 200
+signup_error: N/A
+signup_success: N/A
+signin_error: N/A
+signin_success: N/A
+signup_error: N/A
+signup_success: N/A
+signin_error: N/A
+signin_success: N/A
+signup_error: N/A
+signup_success: N/A
+signin_error: N/A
+signin_success: N/A
+API URL: http://localhost/api/logout
+Method: POST
+Response: {"message":"Deslogado com sucesso"}
+Status: 200
+signup_error: N/A
+signup_success: N/A
+signin_error: N/A
+signin_success: N/A
+API URL: http://localhost/api/logout
+Method: POST
+Response: {"message":"Deslogado com sucesso"}
+Status: 200
+signup_error: N/A
+signup_success: N/A
+signin_error: N/A
+signin_success: N/A
