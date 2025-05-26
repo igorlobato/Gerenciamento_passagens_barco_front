@@ -84,12 +84,23 @@ $formData = $_SESSION['form_data'] ?? [];
                     <div style="color: green;"><?php echo htmlspecialchars($_SESSION['signup_success']); unset($_SESSION['signup_success']); ?></div>
                 <?php endif; ?>
                 <!-- Adicionado campos e  para obrigação de preenchimento antes de enviar o form -->
-                <input type="text" name="name" placeholder="Name" value="<?php echo htmlspecialchars($formData['name'] ?? ''); ?>" required>
+                <input type="text" name="name" placeholder="Nome" value="<?php echo htmlspecialchars($formData['name'] ?? ''); ?>" required>
                 <input type="email" name="email" placeholder="E-mail" value="<?php echo htmlspecialchars($formData['email'] ?? ''); ?>" required>
-                <input type="text" name="cpf" placeholder="CPF: 9999999999" value="<?php echo htmlspecialchars($formData['cpf'] ?? ''); ?>" required>
-                <input type="text" name="numero" placeholder="Number: (99)99999-9999" value="<?php echo htmlspecialchars($formData['numero'] ?? ''); ?>" required>
-                <input type="password" name="password" placeholder="Password: 8 characters" required>
-                <input type="password" name="password_confirmation" placeholder="Confirm Password" required>
+                <input type="text" name="cpf" placeholder="CPF: 999.999.999-99" value="<?php echo htmlspecialchars($formData['cpf'] ?? ''); ?>" required>
+                <input type="text" name="numero" placeholder="Contato: (99)99999-9999" value="<?php echo htmlspecialchars($formData['numero'] ?? ''); ?>" required>
+                <div class="password-wrapper">
+                    <input type="password" name="password" placeholder="Senha: 8 caracteres" required id="password">
+                        <i class="fa-solid fa-eye toggle-password" toggle="#password"></i>
+                </div>
+
+                <div class="password-wrapper">
+                    <input type="password" name="password_confirmation" placeholder="Confirmação de senha" required id="password_confirmation">
+                        <i class="fa-solid fa-eye toggle-password" toggle="#password_confirmation"></i>
+                </div>
+
+
+                <!--<input type="password" name="password" placeholder="Senha: 8 caracteres" required>
+                <input type="password" name="password_confirmation" placeholder="Confirmação de senha" required>-->
                 <button>Inscrever-se</button>
             </form>
         </div>
@@ -104,7 +115,7 @@ $formData = $_SESSION['form_data'] ?? [];
                 </div>
                 <span>ou use sua senha de e-mail</span>
                 <input type="email" name="email" placeholder="E-mail" value="<?php echo htmlspecialchars($formData['email'] ?? ''); ?>" >
-                <input type="password" name="password" placeholder="Password" >
+                <input type="password" name="password" placeholder="Senha" >
                 <a href="#">Esqueceu sua senha?</a>
                 <button>Entrar</button>
                                 <?php
@@ -136,6 +147,7 @@ $formData = $_SESSION['form_data'] ?? [];
         </div>
     </div>
 
+    <script src="https://unpkg.com/imask"></script>
     <script src="js/app.js"></script>
     <!-- Código para mostrar o form de registro ao clicar nele. -->
     <?php if ($showSignup): ?>

@@ -248,3 +248,34 @@ body {
 .logout-btn i {
     margin-right: 8px;
 }
+
+.password-wrapper {
+    position: relative;
+    width: 100%;
+    margin: 1px 0;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding: 10px 40px 10px 15px; /* espaço para o ícone à direita */
+    background-color: #eee;
+    border: none;
+    font-size: 13px;
+    border-radius: 8px;
+    outline: none;
+}
+
+.password-wrapper .toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    font-size: 16px;
+}
+
+
+/*tela de esqueci senha*/
+
+
