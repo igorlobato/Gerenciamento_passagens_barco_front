@@ -1,0 +1,3 @@
+debug.log
+
+# Ignorar o log, desnecessário por git, se possível configurar para criar automáticamente 

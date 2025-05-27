@@ -48,8 +48,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = callApi('http://localhost/api/register', $data);
 
     if ($result['status'] === 201) {
+        $_SESSION['token'] = $result['response']['token']; // Salva o token
         $_SESSION['signup_success'] = 'Cadastro realizado com sucesso!';
-        header('Location: login.php?form=signup');
+        unset($_SESSION['form_data']);
+        header('Location: index.php'); 
         exit;
     } else {
         $_SESSION['signup_error'] = $result['response']['message'] ?? 'Erro ao cadastrar. Verifique os dados.';
