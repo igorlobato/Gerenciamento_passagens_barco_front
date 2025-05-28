@@ -40,22 +40,57 @@ function callApi($url, $data, $method = 'POST', $token = null) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Sistema - Bem-vindo</title>
-    <style>
-
-    </style>
+    <title>Agência de Viagens</title>
+    <link rel="stylesheet" href="css/principal.css">
 </head>
 <body>
-    <div class="dashboard-container">
-        <h1>Bem-vindo ao sistema!</h1>
-        <p>Você está logado com sucesso.</p>
-        <a href="index.php?action=logout" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Sair</a>
-    </div>
+    <header>
+        <h1>Agência de Viagens</h1>
+        <nav>
+            <ul>
+                <li><a href="#reservas">Reservas</a></li>
+                <li><a href="#encomendas">Encomendas</a></li>
+                <li><a href="#gerenciamento">Gerenciamento</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="reservas">
+            <h2>Reserva de Passagens</h2>
+            <form id="reservaForm">
+                <input type="text" id="nome" placeholder="Seu nome" required>
+                <input type="text" id="destino" placeholder="Destino" required>
+                <input type="date" id="data" required>
+                <button type="submit">Reservar</button>
+            </form>
+            <div id="listaReservas"></div>
+        </section>
+
+        <section id="encomendas">
+            <h2>Cadastro de Encomendas</h2>
+            <form id="encomendaForm">
+                <input type="text" id="cliente" placeholder="Nome do cliente" required>
+                <input type="text" id="descricao" placeholder="Descrição da encomenda" required>
+                <button type="submit">Cadastrar Encomenda</button>
+            </form>
+            <div id="listaEncomendas"></div>
+        </section>
+
+        <section id="gerenciamento">
+            <h2>Gerenciamento Geral</h2>
+            <p>Veja suas reservas e encomendas cadastradas nas seções acima.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Agência de Viagens. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="js/principal.js"></script>
 </body>
 </html>

@@ -116,7 +116,7 @@ $formData = $_SESSION['form_data'] ?? [];
                 <span>ou use sua senha de e-mail</span>
                 <input type="email" name="email" placeholder="E-mail" value="<?php echo htmlspecialchars($formData['email'] ?? ''); ?>" >
                 <input type="password" name="password" placeholder="Senha" >
-                <a href="#">Esqueceu sua senha?</a>
+                <a href="recuperacaoSenha.php">Esqueceu sua senha?</a>
                 <button>Entrar</button>
                                 <?php
                 // Log para depurar
