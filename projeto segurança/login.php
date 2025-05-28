@@ -4,19 +4,19 @@
 // Função para fazer chamadas à API
 function callApi($url, $data, $method = 'POST', $token = null) {
     $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); //retorna resposta como string
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method); //Requisição tipo POST
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [ //Headers
         'Content-Type: application/json',
         'Accept: application/json',
         $token ? "Authorization: Bearer $token" : ''
     ]);
     if ($data) {
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data)); //Codifica os dados em JSON
     }
-    $response = curl_exec($ch);
-    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
+    $response = curl_exec($ch); //Executa a requisição
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE); //Pega o código HTTP da resposta
+    curl_close($ch); //Fecha a conexão
     return ['response' => json_decode($response, true), 'status' => $httpCode];
 }
 

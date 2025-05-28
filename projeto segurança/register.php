@@ -31,25 +31,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'password_confirmation' => $_POST['password_confirmation']
     ];
 
-    // Validação básica no PHP (opcional, já que a API também valida)
-    // Se quiserem usar descomentar isso aqui.
-    // if (strlen($data['cpf']) !== 11) {
-    //     $_SESSION['signup_error'] = 'CPF deve ter 11 dígitos.';
-    //     header('Location: login.php');
-    //     exit;
-    // }
-    // if (!preg_match('/^\(\d{2}\)\d{5}-\d{4}$/', $data['numero'])) {
-    //     $_SESSION['signup_error'] = 'Número deve estar no formato (99)99999-9999.';
-    //     header('Location: login.php');
-    //     exit;
-    // }
-
     // Chamar a API
     $result = callApi('http://localhost/api/register', $data);
 
     if ($result['status'] === 201) {
         $_SESSION['token'] = $result['response']['token']; // Salva o token
-        $_SESSION['signup_success'] = 'Cadastro realizado com sucesso!';
+        $_SESSION['signup_success'] = 'Cadastro realizado com sucesso! Verifique seu e-mail para ativar a sua conta.';
         unset($_SESSION['form_data']);
         header('Location: index.php'); 
         exit;
