@@ -22,6 +22,8 @@ function Dashboard() {
     fetchUser();
   }, [navigate]);
 
+  console.log('Usuário logado:', user)
+
   const handleResendActivation = async (e) => {
     e.preventDefault();
     setMessage('');
@@ -30,7 +32,7 @@ function Dashboard() {
       const response = await authService.resendActivation(user.email);
       setMessage(response.message || 'Novo link de ativação enviado para seu e-mail.');
     } catch (err) {
-      setError(err.error || 'Erro ao reenviar link.');
+      setError(err.message);
     }
   };
 
@@ -59,7 +61,6 @@ function Dashboard() {
           {message && <div className="message">{message}</div>}
           {error && <div className="error">{error}</div>}
           <form className="activation-form" onSubmit={handleResendActivation}>
-            <input type="email" value={user.email} readOnly />
             <button type="submit">Reenviar Link</button>
           </form>
         </>

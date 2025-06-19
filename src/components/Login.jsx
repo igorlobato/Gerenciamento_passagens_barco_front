@@ -16,9 +16,14 @@ function Login() {
       navigate('/dashboard');
     } catch (err) {
       if (err.needs_activation) {
-        navigate('/dashboard'); // Redireciona pra verificar ativo
+        setError('Sua conta precisa ser ativada. Verifique seu e-mail.');
+        navigate('/dashboard');
+      } else if (err.message) {
+        // Alguns backends podem usar 'message' em vez de 'error'
+        setError(err.message);
       } else {
-        setError(err.error || 'Erro ao fazer login.');
+        // Mensagem genérica para qualquer outro erro inesperado
+        setError('Ocorreu um erro desconhecido ao tentar logar. Tente novamente mais tarde.');
       }
     }
   };
@@ -54,6 +59,8 @@ function Login() {
       </form>
       <div className="toggle-form">
         <a href="/register">Não tem uma conta? Cadastre-se</a>
+        <br />
+        <a href="/reenviarsenha">Esqueci minha senha.</a>
       </div>
     </div>
   );

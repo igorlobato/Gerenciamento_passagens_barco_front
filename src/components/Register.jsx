@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import authService from '../services/authService';
+import Swal from 'sweetalert2';
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -18,15 +19,83 @@ function Register() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleCpfChange = (e) => {
+    let value = e.target.value;
+    value = value.replace(/\D/g, '');
+
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+
+    if (value.length > 14) {
+      value = value.substring(0, 14);
+    }
+    
+    setFormData({ ...formData, cpf: value });
+  }
+
+  const handleNumeroChange = (e) => {
+    let value = e.target.value;
+    // Remove tudo que não é dígito
+    value = value.replace(/\D/g, ''); 
+
+    // Aplica a máscara para telefone (com ou sem 9º dígito)
+    // (99)9999-9999 ou (99)99999-9999
+    if (value.length > 10) { // Se tiver 11 dígitos (com 9º dígito)
+      value = value.replace(/^(\d\d)(\d{5})(\d{4}).*/, '($1) $2-$3');
+    } else if (value.length > 6) { // Se tiver 10 dígitos (sem 9º dígito)
+      value = value.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, '($1) $2-$3');
+    } else if (value.length > 2) { // Se tiver mais de 2 dígitos
+      value = value.replace(/^(\d\d)(\d{0,5})/, '($1) $2');
+    }
+
+    // Limita o tamanho do número (com máscara)
+    if (value.length > 16) { // Ex: (99) 99999-9999 tem 15 caracteres
+      value = value.substring(0, 16);
+    }
+
+    setFormData({ ...formData, numero: value });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     try {
-      await authService.register(formData);
-      navigate('/login', { state: { message: 'Cadastro realizado! Verifique seu e-mail.' } });
+      await authService.register(formData); // Use os dados sem máscara aqui
+
+      // Exibe o SweetAlert2 de sucesso
+      Swal.fire({
+        icon: 'success',
+        title: 'Cadastro realizado!',
+        text: 'Sua conta foi criada com sucesso. Por favor, verifique seu e-mail para ativá-la.',
+        confirmButtonText: 'Ok'
+      }).then(() => {
+        // Redireciona para a página de login após o usuário fechar o alerta
+        navigate('/login');
+      });
+
     } catch (err) {
-      setError(err.error || 'Erro ao cadastrar.');
-    }
+      // Extrair mensagem de erro
+      let errorMessage = 'Erro ao cadastrar. Tente novamente.';
+      if (err.errors) {
+        // Erros de validação do Laravel
+        errorMessage = Object.values(err.errors).flat().join(' ');
+      } else if (err.error) {
+        // Erro genérico da API
+        errorMessage = err.error;
+      } else if (err.message) {
+        // Erro genérico do Axios
+        errorMessage = err.message;
+      }
+      setError(errorMessage);
+        // Opcional: Mostrar um alerta de erro também
+        Swal.fire({
+            icon: 'error',
+            title: 'Erro no Cadastro',
+            text: errorMessage,
+            confirmButtonText: 'Ok'
+        });
+    };
   };
 
   return (
@@ -63,8 +132,9 @@ function Register() {
             id="cpf"
             name="cpf"
             value={formData.cpf}
-            onChange={handleChange}
-            placeholder="12345678901"
+            onChange={handleCpfChange}
+            placeholder="123.456.789-01"
+            maxLength={14}
             required
           />
         </div>
@@ -75,8 +145,9 @@ function Register() {
             id="numero"
             name="numero"
             value={formData.numero}
-            onChange={handleChange}
+            onChange={handleNumeroChange}
             placeholder="(99)99999-9999"
+            maxLength={16}
             required
           />
         </div>

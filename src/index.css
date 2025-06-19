@@ -5,7 +5,7 @@ body {
 }
 
 .dashboard-container {
-  max-width: 20px;
+  max-width: 50%;
   margin: 50px auto;
   padding: 20px;
   text-align: center;
