@@ -105,7 +105,7 @@ const authService = {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        `${API_URL}/resend-password`,
+        `${API_URL}/reset-password`,
         { email },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -114,6 +114,19 @@ const authService = {
       return response.data;
     } catch (error) {
       throw error.response?.data || { error: 'Erro ao reenviar link.' };
+    }
+  },
+
+  async resetPassword(data) {
+    try {
+      const response = await axios.post(`${API_URL}/reset-password/confirm`, data);
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao redefinir senha:', {
+        status: error.response?.status,
+        data: error.response?.data,
+      });
+      throw error.response?.data || { error: 'Erro ao redefinir senha.' };
     }
   },
 

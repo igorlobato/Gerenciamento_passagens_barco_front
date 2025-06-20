@@ -37,6 +37,10 @@ function Redefinir() {
             />
             <button type="submit">Redefinir Senha</button>
           </form>
+        <br />
+        <div className="toggle-form">
+          <a href="/login">Voltar para o login</a>
+        </div>
     </div>
   );
 }
