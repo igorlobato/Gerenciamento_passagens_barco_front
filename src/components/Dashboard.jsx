@@ -61,34 +61,34 @@ function Dashboard() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <p className="text-xl text-gray-600">Carregando...</p>
+      <div className="dashboard">
+        <p className="dashboard-loading">Carregando...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col">
+    <div className="dashboard">
       <Navbar user={user} onLogout={handleLogout} />
-      <main className="flex-grow">
+      <main className="dashboard-main">
         {!user.ativo ? (
-          <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-lg">
-            <h1 className="text-2xl font-bold text-gray-800 mb-4">Conta não ativada</h1>
-            <p className="text-gray-600 mb-4">
+          <div className="dashboard-activation">
+            <h1 className="dashboard-activation-title">Conta não ativada</h1>
+            <p className="dashboard-activation-text">
               Sua conta ainda não está ativada. Verifique seu e-mail ou clique abaixo para reenviar o link.
             </p>
-            {message && <p className="text-green-600 mb-4">{message}</p>}
-            {error && <p className="text-red-600 mb-4">{error}</p>}
+            {message && <p className="message">{message}</p>}
+            {error && <p className="error">{error}</p>}
             <form onSubmit={handleResendActivation}>
               <input
                 type="email"
                 value={user.email}
                 readOnly
-                className="w-full px-4 py-2 mb-4 border rounded-md text-gray-700"
+                className="dashboard-activation-input"
               />
               <button
                 type="submit"
-                className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
+                className="dashboard-activation-button"
               >
                 Reenviar Link
               </button>
@@ -96,8 +96,8 @@ function Dashboard() {
           </div>
         ) : (
           <>
-            <div className="relative bg-blue-800 h-48 flex items-center justify-center">
-              <h1 className="text-3xl md:text-4xl font-bold text-white">
+            <div className="dashboard-header">
+              <h1 className="dashboard-header-title">
                 Bem-vindo(a), {user.name}!
               </h1>
             </div>
