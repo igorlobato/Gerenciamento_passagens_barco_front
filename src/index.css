@@ -7,16 +7,18 @@ body {
 
 /* Login */
 .login-background {
-  height: 100vh; /* Usa height em vez de min-height pra garantir cobertura total */
+  min-height: 100vh; /* Garante que cubra pelo menos o viewport */
   background-image: url('./assets/background.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  display: flex; /* Reativa flex pra centralizar */
-  align-items: center;
+  display: flex;
+  align-items: center; /* Alinha no topo pra evitar corte */
   justify-content: center;
   position: relative;
-  margin: 0; /* Garante que não haja margens */
+  margin: 0;
+  padding-top: 20px; /* Espaço pro formulário não colar no topo */
+  padding-bottom: 20px; 
 }
 
 .login-background::before {
@@ -452,6 +454,7 @@ body {
 }
 
 .dashboard-main {
+  background-image: url('./assets/background.png');
   flex-grow: 1;
   padding-top: 80px;
 }
@@ -531,6 +534,8 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 10;
+  margin-top: 50px;
+
 }
 
 .search-form-title {

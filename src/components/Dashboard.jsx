@@ -80,12 +80,19 @@ function Dashboard() {
             {message && <p className="message">{message}</p>}
             {error && <p className="error">{error}</p>}
             <form onSubmit={handleResendActivation}>
-              <input
-                type="email"
-                value={user.email}
-                readOnly
-                className="dashboard-activation-input"
-              />
+              <div className="login-input-wrap" data-validate="E-mail é obrigatório">
+                <span className="login-input-label">E-mail</span>
+                <input
+                  className="login-input"
+                  type="email"
+                  id="email"
+                  value={user.email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Digite seu e-mail"
+                  required
+                />
+                <span className="login-input-focus"></span>
+              </div>
               <button
                 type="submit"
                 className="dashboard-activation-button"
@@ -96,11 +103,9 @@ function Dashboard() {
           </div>
         ) : (
           <>
-            <div className="dashboard-header">
-              <h1 className="dashboard-header-title">
-                Bem-vindo(a), {user.name}!
-              </h1>
-            </div>
+          <div>
+            
+          </div>
             <SearchForm />
             <OfferCarousel />
           </>

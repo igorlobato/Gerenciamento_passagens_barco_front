@@ -12,10 +12,13 @@ function Navbar({ user, onLogout }) {
     try {
       await onLogout();
       setIsDropdownOpen(false);
+      navigate('/login');
     } catch (err) {
       console.error('Erro ao fazer logout:', err);
     }
   };
+
+  // const isAdmin = user && user.roles && user.roles.includes('admin');
 
   return (
     <nav className="navbar">
@@ -40,8 +43,12 @@ function Navbar({ user, onLogout }) {
                 <div className="navbar-dropdown">
                   <a href="#" className="navbar-dropdown-item">Perfil</a>
                   <a href="#" className="navbar-dropdown-item">Minhas Compras</a>
+                  {/* {isAdmin && (
+                    <a href="/admin" className="navbar-dropdown-item">Admin</a>
+                  )} */}
+                  <a href="/admin" className="navbar-dropdown-item">Admin</a>
                   <a href="/redefinir" className="navbar-dropdown-item">Redefinir Senha</a>
-                  <button
+                  <button 
                     onClick={handleLogout}
                     className="navbar-dropdown-item navbar-dropdown-button"
                   >
@@ -67,6 +74,10 @@ function Navbar({ user, onLogout }) {
             <>
               <a href="#" className="navbar-mobile-link">Perfil</a>
               <a href="#" className="navbar-mobile-link">Minhas Compras</a>
+              {/* {isAdmin && (
+                <a href="/admin" className="navbar-mobile-link">Admin</a>
+              )} */}
+              <a href="/admin" className="navbar-mobile-link">Admin</a>
               <a href="/redefinir" className="navbar-mobile-link">Redefinir Senha</a>
               <button
                 onClick={handleLogout}

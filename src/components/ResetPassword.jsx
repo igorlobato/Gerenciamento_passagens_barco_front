@@ -47,48 +47,59 @@ function ResetPassword() {
   };
 
   return (
-    <div className="dashboard-container">
-      <h1>Redefinir Senha</h1>
-      <p>Digite sua nova senha abaixo.</p>
-      {message && <div className="message">{message}</div>}
-      {error && <div className="error">{error}</div>}
-      <form className="activation-form" onSubmit={handleSubmit}>
-        <div>
-            <label htmlFor="email">E-mail: </label>
-            <input type="email" id="email" value={email} readOnly />
-        </div>
-        <br />
-        <div>
-            <label htmlFor="password">Nova Senha: </label>
+    <div className="login-background">
+      <div className="dashboard-container">
+        <h1>Redefinir Senha</h1>
+        <p>Digite sua nova senha abaixo.</p>
+        {message && <div className="message">{message}</div>}
+        {error && <div className="error">{error}</div>}
+        <form className="activation-form" onSubmit={handleSubmit}>
+          <div className="login-input-wrap" data-validate="E-mail é obrigatório">
+            <span className="login-input-label">E-mail</span>
             <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
+              className="login-input"
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Digite seu e-mail"
+              required
             />
-        </div>
+            <span className="login-input-focus"></span>
+          </div>
+          <br />
+          <div>
+              <label htmlFor="password">Nova Senha: </label>
+              <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              />
+          </div>
+          <br />
+          <div>
+              <label htmlFor="password_confirmation">Confirmar Senha: </label>
+              <input
+              type="password"
+              id="password_confirmation"
+              value={passwordConfirmation}
+              onChange={(e) => setPasswordConfirmation(e.target.value)}
+              required
+              />
+          </div>
+          <br />
+          <div>
+              <button type="submit" disabled={!token || !email}>
+              Confirmar Nova Senha
+              </button>
+          </div>
+        </form>
         <br />
-        <div>
-            <label htmlFor="password_confirmation">Confirmar Senha: </label>
-            <input
-            type="password"
-            id="password_confirmation"
-            value={passwordConfirmation}
-            onChange={(e) => setPasswordConfirmation(e.target.value)}
-            required
-            />
+        <div className="toggle-form">
+          <a href="/login">Voltar para o login</a>
         </div>
-        <br />
-        <div>
-            <button type="submit" disabled={!token || !email}>
-            Confirmar Nova Senha
-            </button>
-        </div>
-      </form>
-      <br />
-      <div className="toggle-form">
-        <a href="/login">Voltar para o login</a>
       </div>
     </div>
   );

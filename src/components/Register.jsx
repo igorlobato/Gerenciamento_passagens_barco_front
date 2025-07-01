@@ -100,13 +100,14 @@ function Register() {
 
   return (
     <div className="login-background">
-      <div className="container">
-        <h2>Cadastro</h2>
-        {error && <div className="error">{error}</div>}
+      <div className="login-wrap">
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="name">Nome</label>
+          <span className="login-form-title">Cadastro</span>
+          <div className="login-input-wrap">
+            <span className="login-input-label">Nome</span>
             <input
+              className="login-input"
+              placeholder="Digite seu nome"
               type="text"
               id="name"
               name="name"
@@ -114,10 +115,13 @@ function Register() {
               onChange={handleChange}
               required
             />
+            <span className="login-input-focus"></span>
           </div>
-          <div className="form-group">
-            <label htmlFor="email">E-mail</label>
+          <div className="login-input-wrap" data-validate="E-mail é obrigatório">
+            <span className="login-input-label">E-mail</span>
             <input
+              className="login-input"
+              placeholder="Digite seu e-mail"
               type="email"
               id="email"
               name="email"
@@ -125,10 +129,12 @@ function Register() {
               onChange={handleChange}
               required
             />
+            <span className="login-input-focus"></span>
           </div>
-          <div className="form-group">
-            <label htmlFor="cpf">CPF</label>
+          <div className="login-input-wrap">
+            <span className="login-input-label">CPF</span>
             <input
+              className="login-input"
               type="text"
               id="cpf"
               name="cpf"
@@ -138,10 +144,12 @@ function Register() {
               maxLength={14}
               required
             />
+            <span className="login-input-focus"></span>
           </div>
-          <div className="form-group">
-            <label htmlFor="numero">Número</label>
+          <div className="login-input-wrap">
+            <span className="login-input-label">Número</span>
             <input
+              className="login-input"
               type="text"
               id="numero"
               name="numero"
@@ -151,10 +159,13 @@ function Register() {
               maxLength={16}
               required
             />
+            <span className="login-input-focus"></span>
           </div>
-          <div className="form-group">
-            <label htmlFor="password">Senha</label>
+          <div className="login-input-wrap">
+            <span className="login-input-label">Senha</span>
             <input
+              className="login-input"
+              placeholder='Digite sua senha'
               type="password"
               id="password"
               name="password"
@@ -162,10 +173,13 @@ function Register() {
               onChange={handleChange}
               required
             />
+            <span className="login-input-focus"></span>
           </div>
-          <div className="form-group">
-            <label htmlFor="password_confirmation">Confirmar Senha</label>
+          <div className="login-input-wrap">
+            <span className="login-input-label">Confirmar Senha</span>
             <input
+              className="login-input"
+              placeholder='Digite novamente sua senha'
               type="password"
               id="password_confirmation"
               name="password_confirmation"
@@ -173,13 +187,15 @@ function Register() {
               onChange={handleChange}
               required
             />
+            <span className="login-input-focus"></span>
           </div>
           <button type="submit" className="btn">
             Cadastrar
           </button>
         </form>
-        <div className="toggle-form">
-          <a href="/login">Já tem uma conta? Faça login</a>
+        <div className="login-signup">
+          <span className="login-signup-text">Já tem uma conta?</span>
+          <a href="/login" className="login-signup-link">Faça Login</a>
         </div>
       </div>
     </div>

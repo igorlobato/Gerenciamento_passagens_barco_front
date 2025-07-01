@@ -21,26 +21,40 @@ function Redefinir() {
   };
 
   return (
-    <div className="dashboard-container">
-          <h1>Redefinir senha</h1>
-          <p>Para redefinir sua senha digite seu e-mail no campo abaixo e clique em redefinir senha.</p>
+    <div className="login-background">
+      <div className="login-wrap">
           {message && <div className="message">{message}</div>}
           {error && <div className="error">{error}</div>}
           <form className="activation-form" onSubmit={redefinir}>
-            <label htmlFor="email">E-mail: </label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <button type="submit">Redefinir Senha</button>
+            <span className="login-form-title">Redefinir senha</span>
+            <p>Para redefinir sua senha digite seu e-mail no campo abaixo e clique em redefinir senha.</p>
+            <div className="login-input-wrap" data-validate="E-mail é obrigatório">
+              <span className="login-input-label">E-mail</span>
+              <input
+                className="login-input"
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Digite seu e-mail"
+                required
+              />
+              <span className="login-input-focus"></span>
+            </div>
+            <div className="login-btn-container">
+              <div className="login-btn-wrap">
+                <div className="login-btn-bg"></div>
+                <button className="login-btn" type="submit">
+                  Redefinir Senha
+                </button>
+              </div>
+            </div>
           </form>
         <br />
         <div className="toggle-form">
           <a href="/login">Voltar para o login</a>
         </div>
+      </div>
     </div>
   );
 }

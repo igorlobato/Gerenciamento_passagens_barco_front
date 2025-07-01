@@ -8,6 +8,7 @@ import ResetPassword from './components/ResetPassword.jsx';
 import Register from './components/Register.jsx';
 import Dashboard from './components/Dashboard.jsx';
 import Activation from './components/Activation.jsx';
+import Admin from './components/admin/Admin.jsx'
 import PrivateRoute from './components/PrivateRoute.jsx';
 import './index.css';
 
@@ -27,6 +28,15 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           element={
             <PrivateRoute>
               <Dashboard />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path='admin'
+          element={
+            <PrivateRoute>
+              <Admin />
             </PrivateRoute>
           }
         />
