@@ -1,17 +1,42 @@
-// src/components/PrivateRoute.jsx
+import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import authService from '../services/authService';
 
 function PrivateRoute({ children, adminOnly = false }) {
-  const user = authService.getUser();
-  const isAdmin = user && user.roles && user.roles.includes('admin');
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const token = authService.getToken();
-  if (!user && !token) {
+  useEffect(() => {
+    let mounted = true;
+    const fetchUser = async () => {
+      try {
+        const userData = await authService.getUser();
+        if (mounted) {
+          setUser(userData);
+          setLoading(false);
+        }
+      } catch (err) {
+        if (mounted) {
+          localStorage.removeItem('token');
+          setLoading(false);
+        }
+      }
+    };
+    fetchUser();
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  if (loading) {
+    return <div className="dashboard"><p className="dashboard-loading">Carregando...</p></div>;
+  }
+
+  if (!user) {
     return <Navigate to="/login" />;
   }
 
-  if (adminOnly && !isAdmin && !token) {
+  if (adminOnly && !user.permissions.includes('papel_permissao')) {
     return <Navigate to="/dashboard" />;
   }
 

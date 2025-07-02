@@ -8,6 +8,8 @@ function Navbar({ user, onLogout }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate();
 
+  console.log('User data:', user);
+
   const handleLogout = async () => {
     try {
       await onLogout();
@@ -18,13 +20,15 @@ function Navbar({ user, onLogout }) {
     }
   };
 
-  // const isAdmin = user && user.roles && user.roles.includes('admin');
+  const isAdmin = user && user.permissions && user.permissions.includes('papel_permissao');
 
   return (
     <nav className="navbar">
       <div className="navbar-container">
         <div className="navbar-brand">
-          <span className="navbar-logo">BarcoPass</span>
+          <a href="/dashboard" className="navbar-logo">
+            <span className="navbar-logo">BarcoPass</span>
+          </a>
         </div>
         <div className="navbar-menu">
           <a href="/dashboard" className="navbar-link">Home</a>
@@ -43,10 +47,9 @@ function Navbar({ user, onLogout }) {
                 <div className="navbar-dropdown">
                   <a href="#" className="navbar-dropdown-item">Perfil</a>
                   <a href="#" className="navbar-dropdown-item">Minhas Compras</a>
-                  {/* {isAdmin && (
+                  {isAdmin && (
                     <a href="/admin" className="navbar-dropdown-item">Admin</a>
-                  )} */}
-                  <a href="/admin" className="navbar-dropdown-item">Admin</a>
+                  )} 
                   <a href="/redefinir" className="navbar-dropdown-item">Redefinir Senha</a>
                   <button 
                     onClick={handleLogout}
@@ -74,10 +77,9 @@ function Navbar({ user, onLogout }) {
             <>
               <a href="#" className="navbar-mobile-link">Perfil</a>
               <a href="#" className="navbar-mobile-link">Minhas Compras</a>
-              {/* {isAdmin && (
+              {isAdmin && (
                 <a href="/admin" className="navbar-mobile-link">Admin</a>
-              )} */}
-              <a href="/admin" className="navbar-mobile-link">Admin</a>
+              )}
               <a href="/redefinir" className="navbar-mobile-link">Redefinir Senha</a>
               <button
                 onClick={handleLogout}

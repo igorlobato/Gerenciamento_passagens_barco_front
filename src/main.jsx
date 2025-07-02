@@ -35,7 +35,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route
           path='admin'
           element={
-            <PrivateRoute>
+            <PrivateRoute adminOnly={true}>
               <Admin />
             </PrivateRoute>
           }

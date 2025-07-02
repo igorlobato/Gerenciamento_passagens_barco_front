@@ -314,6 +314,11 @@ body {
   font-weight: bold;
 }
 
+a.navbar-logo {
+  text-decoration: none;
+  color: inherit;
+}
+
 .navbar-menu {
   display: flex;
   align-items: center;
@@ -696,4 +701,54 @@ body {
 
 .footer-text {
   margin: 0;
+}
+
+/* Admin */
+.admin{
+  min-width: 1200px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: rgb(243, 243, 243);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.admin-containers {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  min-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.admin-container {
+  flex: 1;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.admin-container h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.admin-container ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.admin-container ul li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.admin-container h4 {
+  color: #34495e;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
 }
