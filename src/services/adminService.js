@@ -100,6 +100,16 @@ const adminService = {
         throw error.response?.data || { error: 'Erro ao obter usuários.' };
         }
     },
+
+    getLogs: async () => {
+        try{
+            return await axios.get(`${API_URL}/logs`,{
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+        }); 
+        }catch (error) {
+            throw error.response?.data || { error: 'Erro ao obter logs.' };
+        }
+    },
 };
 
 export default adminService;

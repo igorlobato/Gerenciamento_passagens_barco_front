@@ -60,6 +60,22 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+
+    // Regex para verificar senha forte
+    const strongPasswordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,}$/;
+
+    if (!strongPasswordRegex.test(formData.password)) {
+      const message = 'A senha deve conter no mínimo 8 caracteres, incluindo uma letra maiúscula, um número e um caractere especial.';
+      setError(message);
+      Swal.fire({
+        icon: 'error',
+        title: 'Senha fraca',
+        text: message,
+        confirmButtonText: 'Ok'
+      });
+      return;
+    }
+
     try {
       await authService.register(formData); // Use os dados sem máscara aqui
 

@@ -10,6 +10,7 @@ import Dashboard from './components/Dashboard.jsx';
 import Activation from './components/Activation.jsx';
 import Admin from './components/admin/Admin.jsx'
 import PrivateRoute from './components/PrivateRoute.jsx';
+import Log from './components/admin/Log.jsx'
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -37,6 +38,14 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           element={
             <PrivateRoute adminOnly={true}>
               <Admin />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path='log'
+          element={
+            <PrivateRoute adminOnly={true}>
+              <Log />
             </PrivateRoute>
           }
         />

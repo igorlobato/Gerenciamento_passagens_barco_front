@@ -50,6 +50,9 @@ function Navbar({ user, onLogout }) {
                   {isAdmin && (
                     <a href="/admin" className="navbar-dropdown-item">Admin</a>
                   )} 
+                  {isAdmin && (
+                    <a href="/log" className="navbar-dropdown-item">Checar Logs</a>
+                  )} 
                   <a href="/redefinir" className="navbar-dropdown-item">Redefinir Senha</a>
                   <button 
                     onClick={handleLogout}
@@ -80,6 +83,9 @@ function Navbar({ user, onLogout }) {
               {isAdmin && (
                 <a href="/admin" className="navbar-mobile-link">Admin</a>
               )}
+              {isAdmin && (
+                    <a href="/log" className="navbar-dropdown-item">Checar Logs</a>
+              )} 
               <a href="/redefinir" className="navbar-mobile-link">Redefinir Senha</a>
               <button
                 onClick={handleLogout}
