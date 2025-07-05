@@ -101,13 +101,13 @@ const adminService = {
         }
     },
 
-    getLogs: async () => {
-        try{
-            return await axios.get(`${API_URL}/logs`,{
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-        }); 
-        }catch (error) {
-            throw error.response?.data || { error: 'Erro ao obter logs.' };
+    getLogs: async (page = 1) => {
+        try {
+        return await axios.get(`${API_URL}/logs?page=${page}`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+        });
+        } catch (error) {
+        throw error.response?.data || { error: 'Erro ao obter logs.' };
         }
     },
 };

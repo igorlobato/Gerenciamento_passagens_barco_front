@@ -43,6 +43,18 @@ const authService = {
     }
   },
 
+  verifyCaptcha: async (token) => {
+    try {
+      const response = await axios.post(`${API_URL}/verify-captcha`, {
+        'g-recaptcha-response': token,
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao verificar CAPTCHA (authService):', error.response);
+      throw error.response?.data || { error: 'Erro ao verificar CAPTCHA.' };
+    }
+  },
+
   async logout() {
     try {
       const token = localStorage.getItem('token');

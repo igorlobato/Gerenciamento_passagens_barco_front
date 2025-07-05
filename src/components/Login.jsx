@@ -1,30 +1,87 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import authService from '../services/authService';
+import ReCAPTCHA from 'react-google-recaptcha';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [showCaptcha, setShowCaptcha] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState(null);
+  const recaptchaRef = useRef(null);
   const navigate = useNavigate();
+  const API_URL = '/api';
+
+  useEffect(() => {
+    const checkLoginRequirements = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/check-login-requirements`);
+        if (response.data.show_captcha) {
+          setShowCaptcha(true);
+        }
+      } catch (error) {
+        console.error('Erro ao verificar necessidade de CAPTCHA:', error);
+      }
+    };
+
+    checkLoginRequirements();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+
     try {
-      await authService.login({ email, password });
+      const credentials = { email, password };
+      if (showCaptcha) {
+        if (!captchaToken) {
+          setError('Por favor, complete o CAPTCHA.');
+          return;
+        }
+        credentials['g-recaptcha-response'] = captchaToken;
+      }
+
+      await authService.login(credentials);
       navigate('/dashboard');
     } catch (err) {
       if (err.needs_activation) {
         setError('Sua conta precisa ser ativada. Verifique seu e-mail.');
         navigate('/dashboard');
+      } else if (err.attempts_remaining !== undefined) {
+        setError(`Credenciais inválidas. Tentativas restantes: ${err.attempts_remaining}`);
+        if (err.attempts_remaining === 0 || err.show_captcha) {
+          setShowCaptcha(true);
+        }
       } else if (err.message) {
-        // Alguns backends podem usar 'message' em vez de 'error'
         setError(err.message);
       } else {
-        // Mensagem genérica para qualquer outro erro inesperado
         setError('Ocorreu um erro desconhecido ao tentar logar. Tente novamente mais tarde.');
       }
+
+      if (showCaptcha) {
+        recaptchaRef.current.reset();
+        setCaptchaToken(null);
+      }
+    }
+  };
+
+  const handleCaptchaChange = (token) => {
+    setCaptchaToken(token);
+    if (token) {
+      authService.verifyCaptcha(token)
+        .then(() => {
+          setShowCaptcha(false);
+          setCaptchaToken(null);
+          recaptchaRef.current.reset();
+        })
+        .catch((err) => {
+          setError(err.message || 'Erro ao verificar CAPTCHA.');
+          recaptchaRef.current.reset();
+          setCaptchaToken(null);
+        });
     }
   };
 
@@ -60,6 +117,15 @@ function Login() {
             />
             <span className="login-input-focus"></span>
           </div>
+          {showCaptcha && (
+            <div className="captcha-wrap">
+              <ReCAPTCHA
+                ref={recaptchaRef}
+                sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                onChange={handleCaptchaChange}
+              />
+            </div>
+          )}
           <div className="login-forgot">
             <a href="/reenviarsenha">Esqueceu a senha?</a>
           </div>
