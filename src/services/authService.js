@@ -32,13 +32,13 @@ const authService = {
   async login(credentials) {
     try {
       const response = await axios.post(`${API_URL}/login`, credentials);
-      if (response.data.token) {
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('user_id', response.data.user_id);
-      }
+      // if (response.data.token) {
+      //   localStorage.setItem('token', response.data.token);
+      //   localStorage.setItem('user_id', response.data.user_id);
+      // }
       return response.data;
     } catch (error) {
-      console.error('Erro de login (authService):', error.response);
+      console.error('Erro de login (authService):', error.response || error.message);
       throw error.response?.data || { error: 'Erro ao fazer login.' };
     }
   },
