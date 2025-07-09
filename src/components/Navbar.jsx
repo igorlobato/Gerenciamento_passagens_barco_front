@@ -53,7 +53,7 @@ function Navbar({ user, onLogout }) {
                   {isAdmin && (
                     <a href="/log" className="navbar-dropdown-item">Checar Logs</a>
                   )} 
-                  <a href="/redefinir" className="navbar-dropdown-item">Redefinir Senha</a>
+                  <a href="/reenviarsenha" className="navbar-dropdown-item">Redefinir Senha</a>
                   <button 
                     onClick={handleLogout}
                     className="navbar-dropdown-item navbar-dropdown-button"
